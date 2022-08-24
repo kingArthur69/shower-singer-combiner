@@ -47,8 +47,8 @@ jobs:
         # build on feature branches, push only on main branch
         push: ${{ github.ref == 'refs/heads/main' }}
         tags: |
-          arthurmi28/shower-singer-combiner:$(date +%s)
-          ghcr.io/arthurmi28/shower-singer-combiner:$(date +%s)
+          arthurmi28/shower-singer-combiner:latest
+          ghcr.io/arthurmi28/shower-singer-combiner:latest
 #         tags: ${{ steps.meta.outputs.tags }}
 #         labels: ${{ steps.meta.outputs.labels }}
       
