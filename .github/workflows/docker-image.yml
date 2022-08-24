@@ -34,23 +34,24 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GIT_TOKEN }}
         
-#     - name: Extract metadata (tags, labels) for Docker
-#       id: meta
-#       uses: docker/metadata-action@v4
-#       with:
-#         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+    - name: Extract metadata (tags, labels) for Docker
+      id: meta
+      uses: docker/metadata-action@v4
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
         
     - name: Build and push Docker image to Docker Hub and GitHub
       uses: docker/build-push-action@v2
       with:
         context: .
         # build on feature branches, push only on main branch
-        push: ${{ github.ref == 'refs/heads/main' }}
-        tags: |
-          arthurmi28/shower-singer-combiner:latest
-          ghcr.io/arthurmi28/shower-singer-combiner:latest
-#         tags: ${{ steps.meta.outputs.tags }}
-#         labels: ${{ steps.meta.outputs.labels }}
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        push: true
+#         push: ${{ github.ref == 'refs/heads/main' }}
+#        tags: |
+#         arthurmi28/shower-singer-combiner:latest
+#         ghcr.io/arthurmi28/shower-singer-combiner:latest
       
     
 #     - uses: actions/checkout@v3
