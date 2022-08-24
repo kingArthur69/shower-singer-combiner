@@ -9,6 +9,7 @@ WORKDIR /app
 
 # install the dependencies and packages in the requirements file
 RUN apt-get update && apt-get install -y ffmpeg && pip install --no-deps -r requirements.txt
+RUN bash -c 'mkdir {combined,download,separated}'
 
 # copy every content from the local file to the image
 COPY . /app
